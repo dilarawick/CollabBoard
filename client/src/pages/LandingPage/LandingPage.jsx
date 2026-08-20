@@ -9,7 +9,7 @@ function LandingPage() {
           <span className="landing-logo" aria-hidden="true"> 
             S
           </span>
-          <h1>SyncBoard</h1>
+          <h1>CollabBoard</h1>
         </Link>
         <nav className="landing-nav">
           <Link to="/login" className="nav-link">
@@ -28,7 +28,7 @@ function LandingPage() {
               Organize work. <span className="hero-accent">Ship faster.</span>
             </h2>
             <p className="hero-subtitle">
-              SyncBoard brings your tasks, team, and timeline together in one
+              CollabBoard brings your tasks, team, and timeline together in one
               visual workspace. Track progress, assign work, and hit deadlines
               without the chaos.
             </p>
@@ -89,7 +89,7 @@ function LandingPage() {
       </main>
 
       <footer className="landing-footer">
-        <p>&copy; 2026 SyncBoard. Built for better workflows.</p>
+        <p>&copy; 2026 CollabBoard. Built for better workflows.</p>
       </footer>
     </div>
   )

@@ -33,7 +33,7 @@ function LoginPage() {
           <span className="login-logo" aria-hidden="true">
             S
           </span>
-          <h1>SyncBoard</h1>
+          <h1>CollabBoard</h1>
         </Link>
 
         <h2 className="login-title">Welcome back</h2>

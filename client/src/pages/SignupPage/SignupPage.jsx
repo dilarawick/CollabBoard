@@ -35,7 +35,7 @@ function SignupPage() {
           <span className="signup-logo" aria-hidden="true">
             S
           </span>
-          <h1>SyncBoard</h1>
+          <h1>CollabBoard</h1>
         </Link>
 
         <h2 className="signup-title">Create your account</h2>
