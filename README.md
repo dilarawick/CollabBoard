@@ -1,15 +1,13 @@
 # CollabBoard
 
-A progressively built full-stack collaborative Kanban task board. Teams can create boards, manage tasks across columns, and see teammates' changes update live.
+A progressively built collaborative Kanban task board. Manage tasks across columns, track progress, and organize team workflows.
 
 ## Tech Stack
 
 - **Frontend:** React 18, Vite, React Router 6
-- **Backend:** Node.js, Express
-- **Database:** MongoDB with Mongoose
-- **Real-time:** Socket.io
-- **Testing:** Jest, React Testing Library, Supertest
-- **DevOps:** Docker, Docker Compose, GitHub Actions
+- **State:** React Context, useReducer
+- **Styling:** CSS Modules / plain CSS
+- **Testing:** Jest, React Testing Library
 
 ## Project Structure
 
@@ -17,22 +15,18 @@ A progressively built full-stack collaborative Kanban task board. Teams can crea
 CollabBoard/
 ├── client/                 # React frontend
 │   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── pages/          # Route-level pages
-│   │   ├── context/        # React Context providers
-│   │   ├── hooks/          # Custom hooks
-│   │   ├── services/       # API and WebSocket clients
-│   │   ├── data/           # Mock data
-│   │   └── utils/          # Helper functions
-│   └── tests/              # Client-side tests
-└── server/                 # Express backend
-    ├── src/
-    │   ├── models/         # Mongoose schemas
-    │   ├── controllers/    # Business logic
-    │   ├── routes/         # API routes
-    │   ├── middleware/     # Auth, validation, error handling
-    │   └── services/       # Socket.io, caching
-    └── tests/              # Server-side tests
+│   │   ├── components/
+│   │   │   ├── ui/          # Shared UI primitives (Button, ThemeToggle, UserProfile)
+│   │   │   ├── board/       # Board-specific components (Board, Column, TaskCard, AddTaskForm, FilterBar, BoardCounter)
+│   │   │   └── layout/      # Layout components (Header, Sidebar, AppLayout)
+│   │   ├── pages/           # Route-level pages (Landing, Login, Signup, Board, TaskDetail, NotFound)
+│   │   ├── context/         # React Context providers (Task, Filter, User, Theme)
+│   │   ├── constants/       # Shared constants
+│   │   ├── data/            # Mock data
+│   │   ├── reducers/        # State reducers
+│   │   └── routes/          # Route definitions
+│   └── tests/               # Client-side tests
+└── README.md
 ```
 
 ## Getting Started
@@ -40,68 +34,44 @@ CollabBoard/
 ### Prerequisites
 
 - Node.js 18+
-- MongoDB
-- Docker & Docker Compose (optional, for containerized setup)
 
 ### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/<your-org>/CollabBoard.git
-cd CollabBoard
-
 # Install client dependencies
 cd client
-npm install
-
-# Install server dependencies
-cd ../server
 npm install
 ```
 
 ### Development
 
 ```bash
-# Terminal 1: Start the backend
-cd server
-npm run dev
-
-# Terminal 2: Start the frontend
+# Start the frontend dev server
 cd client
 npm run dev
 ```
 
-### Docker
-
-```bash
-docker-compose up --build
-```
+Open http://localhost:5173 to view the app.
 
 ## Scripts
 
 ### Client
 
-- `npm run dev` - Start development server (http://localhost:3000)
+- `npm run dev` - Start development server (http://localhost:5173)
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm test` - Run tests
 
-### Server
-
-- `npm run dev` - Start development server with nodemon
-- `npm start` - Start production server
-- `npm test` - Run tests
-
 ## Features
 
-- Create and manage task boards with columns (To Do, In Progress, Done)
-- Add, edit, move, and delete tasks
-- Real-time updates via WebSockets
-- JWT-based authentication
-- Offline support with client-side caching
-- Conflict detection for concurrent edits
-- Responsive UI with React components
-- Automated testing and CI/CD
+- Kanban board with To Do, In Progress, and Done columns
+- Add, delete, and move tasks between columns
+- Task detail view with deep linking
+- 404 catch-all route
+- Shared UI components (Button, ThemeToggle)
+- Context-based state management
+- Dark/light theme toggle
+- Responsive UI
 
 ## License
 
