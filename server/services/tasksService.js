@@ -1,4 +1,4 @@
-import * as tasksRepository from '../repositories/tasksRepository'
+import * as tasksRepository from '../repositories/tasksRepository.js'
 
 export function listTasks() {
   return tasksRepository.getAllTasks()

@@ -16,16 +16,14 @@ app.get('/health', (_req, res) => {
 })
 
 async function startServer() {
-	try {
-		await connectDb()
+    const connected = await connectDb()
 
-		app.listen(config.port, () => {
-			console.log(`Server running on http://localhost:${config.port}`)
-		})
-	} catch (error) {
-		console.error('Failed to start server:', error.message)
-		process.exit(1)
-	}
+    app.listen(config.port, () => {
+        console.log(`Server running on http://localhost:${config.port}`)
+        if (!connected) {
+            console.log('Using in-memory mock data (no MongoDB connection)')
+        }
+    })
 }
 
 startServer()

@@ -5,8 +5,9 @@ A progressively built collaborative Kanban task board. Manage tasks across colum
 ## Tech Stack
 
 - **Frontend:** React 18, Vite, React Router 6
+- **Backend:** Express, MongoDB (Mongoose)
 - **State:** React Context, useReducer
-- **Styling:** CSS Modules / plain CSS
+- **Styling:** CSS
 - **Testing:** Jest, React Testing Library
 
 ## Project Structure
@@ -17,16 +18,37 @@ CollabBoard/
 │   ├── src/
 │   │   ├── components/
 │   │   │   ├── ui/          # Shared UI primitives (Button, ThemeToggle, UserProfile)
-│   │   │   ├── board/       # Board-specific components (Board, Column, TaskCard, AddTaskForm, FilterBar, BoardCounter)
+│   │   │   ├── board/       # Board-specific components (Board, Column, TaskCard, AddTaskForm)
 │   │   │   └── layout/      # Layout components (Header, Sidebar, AppLayout)
-│   │   ├── pages/           # Route-level pages (Landing, Login, Signup, Board, TaskDetail, NotFound)
-│   │   ├── context/         # React Context providers (Task, Filter, User, Theme)
+│   │   ├── pages/           # Route-level pages (Board, TaskDetail, NotFound)
+│   │   ├── context/         # React Context providers (Board, Filter, User, Theme)
 │   │   ├── constants/       # Shared constants
 │   │   ├── data/            # Mock data
+│   │   ├── hooks/           # Custom hooks
 │   │   ├── reducers/        # State reducers
-│   │   └── routes/          # Route definitions
-│   └── tests/               # Client-side tests
-└── README.md
+│   │   ├── routes/          # Route definitions
+│   │   ├── services/        # API client
+│   │   ├── utils/           # Helper functions
+│   │   ├── tests/           # Client-side tests
+│   │   ├── App.jsx          # Root component with routing
+│   │   ├── App.css          # Global styles
+│   │   └── main.jsx         # Application entry point
+│   └── package.json
+├── server/                  # Express API server
+│   ├── config.js            # App configuration
+│   ├── server.js            # Server entry point
+│   ├── db/                  # Database connection
+│   ├── models/              # Mongoose schemas
+│   ├── repositories/        # Data access layer
+│   ├── services/            # Business logic
+│   ├── controllers/         # Request handlers
+│   ├── routes/              # Route definitions
+│   ├── middleware/          # Express middleware
+│   ├── mockdata/            # Server-side mock data
+│   └── package.json
+├── .env                     # Environment variables (git-ignored)
+├── .env.example             # Environment template
+└── package.json             # Root scripts
 ```
 
 ## Getting Started
@@ -34,6 +56,7 @@ CollabBoard/
 ### Prerequisites
 
 - Node.js 18+
+- MongoDB (optional — only needed for the backend API)
 
 ### Installation
 
@@ -48,36 +71,48 @@ npm install
 
 ### Backend Environment
 
-Create a `.env` file in the project root:
+Create a `.env` file in the project root (or copy `.env.example`):
 
 ```bash
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 ```
 
-You can copy from `.env.example` and replace placeholders with your own MongoDB values.
-
 ### Development
 
-```bash
-# Start backend API server
-npm run dev
+**Frontend only (with mock data):**
 
-# Start the frontend dev server
+```bash
 cd client
 npm run dev
 ```
 
-Open http://localhost:5173 to view the app.
+Open http://localhost:5173. The board loads with pre-seeded mock tasks and works without the backend.
+
+**Frontend + Backend:**
+
+```bash
+# Terminal 1 — start backend API server (runs on http://localhost:5000)
+npm run dev
+
+# Terminal 2 — start frontend dev server (runs on http://localhost:5173)
+cd client
+npm run dev
+```
 
 ## Scripts
 
+### Root (Server)
+
+- `npm run dev` — Start backend API server with nodemon
+- `npm start` — Start backend API server in production mode
+
 ### Client
 
-- `npm run dev` - Start development server (http://localhost:5173)
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm test` - Run tests
+- `npm run dev` — Start development server (http://localhost:5173)
+- `npm run build` — Build for production
+- `npm run preview` — Preview production build
+- `npm test` — Run tests
 
 ## Features
 
@@ -85,10 +120,11 @@ Open http://localhost:5173 to view the app.
 - Add, delete, and move tasks between columns
 - Task detail view with deep linking
 - 404 catch-all route
-- Shared UI components (Button, ThemeToggle)
+- Shared UI components (Button, ThemeToggle, UserProfile)
 - Context-based state management
 - Dark/light theme toggle
 - Responsive UI
+- Mock data available for frontend-only development
 
 ## License
 
