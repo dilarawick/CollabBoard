@@ -1,58 +1,35 @@
-const tasks = [
-  { id: '1', title: 'Set up project repository', assignee: 'Alice', status: 'To Do', dueDate: '2026-08-20' },
-  { id: '2', title: 'Design board wireframes', assignee: 'Bob', status: 'To Do', dueDate: '2026-08-22' },
-  { id: '3', title: 'Write API documentation', assignee: 'Carol', status: 'To Do', dueDate: '2026-08-25' },
-  { id: '4', title: 'Build TaskCard component', assignee: 'Dave', status: 'In Progress', dueDate: '2026-08-18' },
-  { id: '5', title: 'Implement column layout', assignee: 'Eve', status: 'In Progress', dueDate: '2026-08-19' },
-  { id: '6', title: 'Add mock task data', assignee: 'Frank', status: 'In Progress', dueDate: '2026-08-21' },
-  { id: '7', title: 'Configure Vite dev server', assignee: 'Grace', status: 'Done', dueDate: '2026-08-10' },
-  { id: '8', title: 'Create React app scaffold', assignee: 'Henry', status: 'Done', dueDate: '2026-08-12' },
-  { id: '9', title: 'Review initial pull request', assignee: 'Ivy', status: 'Done', dueDate: '2026-08-14' },
-]
+const tasksService = require('../services/tasksService')
 
-function getTaskIndex(id) {
-  return tasks.findIndex((task) => task.id === id)
-}
-
-export function getTasks(_req, res) {
+function getTasks(req, res) {
+  const tasks = tasksService.listTasks()
   res.status(200).json(tasks)
 }
 
-export function createTask(req, res) {
-  const task = req.body
-  if (!task || !task.title || !task.assignee || !task.dueDate) {
-    return res.status(400).json({ message: 'Missing required fields' })
+function createTask(req, res) {
+  try {
+    const task = tasksService.addTask(req.body)
+    res.status(201).json(task)
+  } catch (error) {
+    res.status(400).json({ message: error.message })
   }
-
-  const newTask = {
-    id: Date.now().toString(),
-    title: task.title,
-    assignee: task.assignee,
-    status: task.status || 'To Do',
-    dueDate: task.dueDate,
-  }
-
-  tasks.push(newTask)
-  res.status(201).json(newTask)
 }
 
-export function updateTask(req, res) {
-  const index = getTaskIndex(req.params.id)
-  if (index === -1) {
-    return res.status(404).json({ message: 'Task not found' })
+function updateTask(req, res) {
+  try {
+    const task = tasksService.modifyTask(req.params.id, req.body)
+    res.status(200).json(task)
+  } catch (error) {
+    res.status(404).json({ message: error.message })
   }
-
-  const updates = req.body
-  tasks[index] = { ...tasks[index], ...updates }
-  res.status(200).json(tasks[index])
 }
 
-export function deleteTask(req, res) {
-  const index = getTaskIndex(req.params.id)
-  if (index === -1) {
-    return res.status(404).json({ message: 'Task not found' })
+function deleteTask(req, res) {
+  try {
+    tasksService.removeTask(req.params.id)
+    res.status(200).json({ message: 'Task deleted' })
+  } catch (error) {
+    res.status(404).json({ message: error.message })
   }
-
-  tasks.splice(index, 1)
-  res.status(200).json({ message: 'Task deleted' })
 }
+
+module.exports = { getTasks, createTask, updateTask, deleteTask }
