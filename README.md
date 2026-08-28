@@ -38,14 +38,31 @@ CollabBoard/
 ### Installation
 
 ```bash
+# Install root/backend dependencies
+npm install
+
 # Install client dependencies
 cd client
 npm install
 ```
 
+### Backend Environment
+
+Create a `.env` file in the project root:
+
+```bash
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+```
+
+You can copy from `.env.example` and replace placeholders with your own MongoDB values.
+
 ### Development
 
 ```bash
+# Start backend API server
+npm run dev
+
 # Start the frontend dev server
 cd client
 npm run dev
