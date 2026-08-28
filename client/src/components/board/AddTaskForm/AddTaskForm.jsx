@@ -14,14 +14,14 @@ function AddTaskForm() {
     setForm((prev) => ({ ...prev, [name]: value }))
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
 
     if (!form.title.trim() || !form.assignee.trim() || !form.dueDate) {
       return
     }
 
-    addTask({
+    await addTask({
       id: crypto.randomUUID(),
       title: form.title.trim(),
       assignee: form.assignee.trim(),

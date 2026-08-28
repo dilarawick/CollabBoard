@@ -2,10 +2,10 @@
   "name": "collabboard",
   "version": "1.0.0",
   "private": true,
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
-    "dev": "node --watch server.js",
-    "start": "node server.js"
+    "dev": "node --watch server/server.js",
+    "start": "node server/server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
