@@ -31,3 +31,29 @@ export async function deleteTask(id) {
   if (!res.ok) throw new Error('Failed to delete task')
   return res.json()
 }
+
+export async function login(email, password) {
+  const res = await fetch(`${API_BASE}/auth/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  })
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({ message: 'Login failed' }))
+    throw new Error(data.message || 'Login failed')
+  }
+  return res.json()
+}
+
+export async function signup(name, email, password) {
+  const res = await fetch(`${API_BASE}/auth/signup`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email, password })
+  })
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({ message: 'Signup failed' }))
+    throw new Error(data.message || 'Signup failed')
+  }
+  return res.json()
+}

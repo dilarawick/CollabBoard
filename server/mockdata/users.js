@@ -1,9 +1,9 @@
 module.exports = [
   {
     _id: '64f1a2b3c4d5e6f7a8b9c0d1',
-    email: 'alice@example.com',
-    passwordHash: '$2b$10$EixZaYVK1fsbw1ZfbX3OXePaWxn96p36WQoeG6Lruj3vjPGga31lW',
-    name: 'Alice Johnson',
+    email: 'dilarawickramanayake@gmail.com',
+    passwordHash: '$2b$10$SV27LOeieFsi8EEFRJjl0eBjb3Qh8w/ouhjNOHa./2FFDOlQQQLg2',
+    name: 'Dilara Wickramanayake',
     createdAt: new Date('2026-01-15T08:30:00Z')
   },
   {
