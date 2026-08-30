@@ -94,5 +94,29 @@ module.exports = [
     userId: '64f1a2b3c4d5e6f7a8b9c0d2',
     action: 'task.status_changed',
     at: new Date('2026-08-22T13:15:00Z')
+  },
+  {
+    _id: '64f7a8b9c0d1e2f3a4b5c6e3',
+    boardId: '64f2a3b4c5d6e7f8a9b0c1d2',
+    taskId: '64f5a6b7c8d9e0f1a2b3c4d5',
+    userId: '64f1a2b3c4d5e6f7a8b9c0d3',
+    action: 'task.updated',
+    at: new Date('2026-08-25T12:00:00Z')
+  },
+  {
+    _id: '64f7a8b9c0d1e2f3a4b5c6e4',
+    boardId: '64f2a3b4c5d6e7f8a9b0c1d3',
+    taskId: '64f5a6b7c8d9e0f1a2b3c4d9',
+    userId: '64f1a2b3c4d5e6f7a8b9c0d4',
+    action: 'task.moved_to_review',
+    at: new Date('2026-08-27T15:30:00Z')
+  },
+  {
+    _id: '64f7a8b9c0d1e2f3a4b5c6e5',
+    boardId: '64f2a3b4c5d6e7f8a9b0c1d4',
+    taskId: '64f5a6b7c8d9e0f1a2b3c4de',
+    userId: '64f1a2b3c4d5e6f7a8b9c0d2',
+    action: 'task.completed',
+    at: new Date('2026-08-29T16:00:00Z')
   }
 ];
