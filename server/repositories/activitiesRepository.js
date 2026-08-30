@@ -1,3 +1,4 @@
+// Repository layer for managing activity data using mock data
 const { activities } = require('../mockdata')
 
 let activitiesList = [...activities]
