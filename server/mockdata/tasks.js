@@ -1,152 +1,281 @@
 module.exports = [
   {
     _id: '64f5a6b7c8d9e0f1a2b3c4d5',
+
     boardId: '64f2a3b4c5d6e7f8a9b0c1d2',
+
     columnId: '64f3a4b5c6d7e8f9a0b1c2d3',
-    title: 'Set up project repository',
-    description: 'Initialize the Git repository and configure CI/CD pipeline',
+
+    title: 'Configure development environment',
+
+    description: 'Set up the local development environment and project configuration',
+
     assigneeId: '64f1a2b3c4d5e6f7a8b9c0d1',
-    status: 'To Do',
-    priority: 'high',
-    dueDate: new Date('2026-09-01T23:59:59Z'),
+
+    status: 'In Progress',
+
+    priority: 'medium',
+
+    dueDate: new Date('2026-09-03T23:59:59Z'),
+
     position: 0,
+
     version: 1,
+
     createdAt: new Date('2026-06-01T09:30:00Z'),
+
     updatedAt: new Date('2026-06-05T11:00:00Z')
   },
+
   {
     _id: '64f5a6b7c8d9e0f1a2b3c4d6',
+
     boardId: '64f2a3b4c5d6e7f8a9b0c1d2',
+
     columnId: '64f3a4b5c6d7e8f9a0b1c2d4',
-    title: 'Design database schema',
-    description: 'Create ERD and define MongoDB collections for boards, tasks, and users',
+
+    title: 'Plan database structure',
+
+    description: 'Design the database structure and define relationships between application data',
+
     assigneeId: '64f1a2b3c4d5e6f7a8b9c0d2',
-    status: 'In Progress',
+
+    status: 'Review',
+
     priority: 'high',
-    dueDate: new Date('2026-09-05T23:59:59Z'),
+
+    dueDate: new Date('2026-09-07T23:59:59Z'),
+
     position: 0,
+
     version: 2,
+
     createdAt: new Date('2026-06-02T10:00:00Z'),
+
     updatedAt: new Date('2026-08-10T15:30:00Z')
   },
+
   {
     _id: '64f5a6b7c8d9e0f1a2b3c4d7',
+
     boardId: '64f2a3b4c5d6e7f8a9b0c1d2',
+
     columnId: '64f3a4b5c6d7e8f9a0b1c2d5',
-    title: 'Implement authentication',
-    description: 'Set up JWT-based authentication with bcrypt password hashing',
+
+    title: 'Develop user authentication',
+
+    description: 'Implement secure user authentication and session management',
+
     assigneeId: '64f1a2b3c4d5e6f7a8b9c0d1',
-    status: 'Review',
-    priority: 'medium',
-    dueDate: new Date('2026-09-10T23:59:59Z'),
+
+    status: 'In Progress',
+
+    priority: 'high',
+
+    dueDate: new Date('2026-09-12T23:59:59Z'),
+
     position: 0,
+
     version: 3,
+
     createdAt: new Date('2026-06-03T14:00:00Z'),
+
     updatedAt: new Date('2026-08-15T09:45:00Z')
   },
+
   {
     _id: '64f5a6b7c8d9e0f1a2b3c4d8',
+
     boardId: '64f2a3b4c5d6e7f8a9b0c1d2',
+
     columnId: '64f3a4b5c6d7e8f9a0b1c2d6',
-    title: 'Write API documentation',
-    description: 'Document all REST endpoints using Swagger/OpenAPI',
+
+    title: 'Prepare API documentation',
+
+    description: 'Create clear documentation for available API endpoints and request formats',
+
     assigneeId: '64f1a2b3c4d5e6f7a8b9c0d3',
-    status: 'Done',
-    priority: 'low',
-    dueDate: new Date('2026-08-30T23:59:59Z'),
+
+    status: 'Review',
+
+    priority: 'medium',
+
+    dueDate: new Date('2026-09-02T23:59:59Z'),
+
     position: 0,
+
     version: 1,
+
     createdAt: new Date('2026-06-04T08:00:00Z'),
+
     updatedAt: new Date('2026-08-20T17:00:00Z')
   },
+
   {
     _id: '64f5a6b7c8d9e0f1a2b3c4d9',
+
     boardId: '64f2a3b4c5d6e7f8a9b0c1d3',
+
     columnId: '64f3a4b5c6d7e8f9a0b1c2d7',
-    title: 'Create landing page',
-    description: 'Design and implement the marketing landing page',
+
+    title: 'Design application homepage',
+
+    description: 'Create the layout and content structure for the main application homepage',
+
     assigneeId: '64f1a2b3c4d5e6f7a8b9c0d4',
-    status: 'Backlog',
-    priority: 'medium',
-    dueDate: new Date('2026-09-15T23:59:59Z'),
+
+    status: 'To Do',
+
+    priority: 'high',
+
+    dueDate: new Date('2026-09-18T23:59:59Z'),
+
     position: 0,
+
     version: 0,
+
     createdAt: new Date('2026-07-10T10:30:00Z'),
+
     updatedAt: new Date('2026-07-10T10:30:00Z')
   },
+
   {
     _id: '64f5a6b7c8d9e0f1a2b3c4da',
+
     boardId: '64f2a3b4c5d6e7f8a9b0c1d3',
+
     columnId: '64f3a4b5c6d7e8f9a0b1c2d8',
-    title: 'Implement real-time updates',
-    description: 'Add WebSocket support for real-time task synchronization',
+
+    title: 'Enable live task updates',
+
+    description: 'Implement real-time synchronization for task changes across connected users',
+
     assigneeId: '64f1a2b3c4d5e6f7a8b9c0d5',
-    status: 'In Progress',
-    priority: 'high',
-    dueDate: new Date('2026-09-08T23:59:59Z'),
+
+    status: 'To Do',
+
+    priority: 'medium',
+
+    dueDate: new Date('2026-09-14T23:59:59Z'),
+
     position: 0,
+
     version: 1,
+
     createdAt: new Date('2026-07-12T09:00:00Z'),
+
     updatedAt: new Date('2026-08-18T14:20:00Z')
   },
+
   {
     _id: '64f5a6b7c8d9e0f1a2b3c4db',
+
     boardId: '64f2a3b4c5d6e7f8a9b0c1d3',
+
     columnId: '64f3a4b5c6d7e8f9a0b1c2d9',
-    title: 'Set up testing framework',
-    description: 'Configure Jest and React Testing Library for unit and integration tests',
+
+    title: 'Improve test coverage',
+
+    description: 'Add unit and integration tests to improve application reliability',
+
     assigneeId: '64f1a2b3c4d5e6f7a8b9c0d2',
-    status: 'Done',
+
+    status: 'In Progress',
+
     priority: 'medium',
-    dueDate: new Date('2026-08-25T23:59:59Z'),
+
+    dueDate: new Date('2026-09-06T23:59:59Z'),
+
     position: 0,
+
     version: 2,
+
     createdAt: new Date('2026-07-11T11:00:00Z'),
+
     updatedAt: new Date('2026-08-19T16:30:00Z')
   },
+
   {
     _id: '64f5a6b7c8d9e0f1a2b3c4dc',
+
     boardId: '64f2a3b4c5d6e7f8a9b0c1d4',
+
     columnId: '64f3a4b5c6d7e8f9a0b1c2da',
-    title: 'Brainstorm Q4 goals',
-    description: 'Collect team ideas for Q4 objectives and key results',
+
+    title: 'Identify quarterly objectives',
+
+    description: 'Gather and organize ideas for the upcoming quarterly objectives',
+
     assigneeId: null,
-    status: 'Ideas',
-    priority: 'low',
-    dueDate: null,
+
+    status: 'Planned',
+
+    priority: 'medium',
+
+    dueDate: new Date('2026-09-20T23:59:59Z'),
+
     position: 0,
+
     version: 0,
+
     createdAt: new Date('2026-08-01T08:30:00Z'),
+
     updatedAt: new Date('2026-08-01T08:30:00Z')
   },
+
   {
     _id: '64f5a6b7c8d9e0f1a2b3c4dd',
+
     boardId: '64f2a3b4c5d6e7f8a9b0c1d4',
+
     columnId: '64f3a4b5c6d7e8f9a0b1c2db',
-    title: 'Define OKRs for Q4',
-    description: 'Finalize objectives and key results based on brainstorming session',
+
+    title: 'Finalize quarterly goals',
+
+    description: 'Review team objectives and finalize measurable goals for the quarter',
+
     assigneeId: '64f1a2b3c4d5e6f7a8b9c0d1',
-    status: 'Planned',
+
+    status: 'In Progress',
+
     priority: 'high',
-    dueDate: new Date('2026-09-10T23:59:59Z'),
+
+    dueDate: new Date('2026-09-15T23:59:59Z'),
+
     position: 0,
+
     version: 0,
+
     createdAt: new Date('2026-08-05T09:00:00Z'),
+
     updatedAt: new Date('2026-08-05T09:00:00Z')
   },
+
   {
     _id: '64f5a6b7c8d9e0f1a2b3c4de',
+
     boardId: '64f2a3b4c5d6e7f8a9b0c1d4',
+
     columnId: '64f3a4b5c6d7e8f9a0b1c2dc',
-    title: 'Schedule sprint planning',
-    description: 'Coordinate with all team members for the next sprint planning session',
+
+    title: 'Prepare sprint planning session',
+
+    description: 'Organize the agenda and coordinate the team for the upcoming sprint',
+
     assigneeId: '64f1a2b3c4d5e6f7a8b9c0d2',
-    status: 'In Progress',
-    priority: 'medium',
-    dueDate: new Date('2026-09-03T23:59:59Z'),
+
+    status: 'To Do',
+
+    priority: 'low',
+
+    dueDate: new Date('2026-09-09T23:59:59Z'),
+
     position: 0,
+
     version: 1,
+
     createdAt: new Date('2026-08-10T10:00:00Z'),
+
     updatedAt: new Date('2026-08-22T13:15:00Z')
   }
 ];
