@@ -1,3 +1,5 @@
+// Temporary in-memory task data used by the Tasks repository
+
 let tasks = [
   { id: '1', title: 'Set up project repository', assignee: 'Alice', status: 'To Do', dueDate: '2026-08-20' },
   { id: '2', title: 'Design board wireframes', assignee: 'Bob', status: 'To Do', dueDate: '2026-08-22' },
@@ -9,7 +11,7 @@ let tasks = [
   { id: '8', title: 'Create React app scaffold', assignee: 'Henry', status: 'Done', dueDate: '2026-08-12' },
   { id: '9', title: 'Review initial pull request', assignee: 'Ivy', status: 'Done', dueDate: '2026-08-14' },
 ]
-
+// Returns all tasks currently stored in memory
 export function getAllTasks() {
   return tasks
 }

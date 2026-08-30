@@ -1,3 +1,4 @@
+// Central export point for all application models
 const User = require('./User');
 const Board = require('./Board');
 const Task = require('./Task');
