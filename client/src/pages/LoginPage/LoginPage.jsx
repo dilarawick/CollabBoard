@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useUser } from '../../context/UserContext'
+import * as api from '../../services/api'
 import Button from '../../components/ui/Button/Button'
 import './LoginPage.css'
 
@@ -12,18 +13,22 @@ function LoginPage() {
   const navigate = useNavigate()
   const { login } = useUser()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
 
-    if (!email.trim() || !password.trim() || !name.trim()) {
+    if (!email.trim() || !password.trim()) {
       setError('Please fill in all fields.')
       return
     }
 
-    // Save user to context and localStorage
-    login(email, name)
-    navigate('/app')
+    try {
+      const user = await api.login(email, password)
+      login(user)
+      navigate('/app')
+    } catch (err) {
+      setError(err.message)
+    }
   }
 
   return (
@@ -44,17 +49,6 @@ function LoginPage() {
         {error && <p className="login-error">{error}</p>}
 
         <form className="login-form" onSubmit={handleSubmit}>
-          <label className="login-field">
-            <span className="login-label">Full Name</span>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="John Doe"
-              autoComplete="name"
-            />
-          </label>
-
           <label className="login-field">
             <span className="login-label">Email</span>
             <input

@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useUser } from '../../context/UserContext'
+import * as api from '../../services/api'
 import Button from '../../components/ui/Button/Button'
 import './SignupPage.css'
 
@@ -10,8 +12,9 @@ function SignupPage() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
   const navigate = useNavigate()
+  const { login } = useUser()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
 
@@ -25,7 +28,13 @@ function SignupPage() {
       return
     }
 
-    navigate('/app')
+    try {
+      const user = await api.signup(name, email, password)
+      login(user)
+      navigate('/app')
+    } catch (err) {
+      setError(err.message)
+    }
   }
 
   return (

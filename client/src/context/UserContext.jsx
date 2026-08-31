@@ -5,7 +5,6 @@ const UserContext = createContext(null)
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null)
 
-  // Load user from localStorage on mount
   useEffect(() => {
     const savedUser = localStorage.getItem('user')
     if (savedUser) {
@@ -16,8 +15,7 @@ export function UserProvider({ children }) {
   const value = useMemo(
     () => ({
       user,
-      login: (email, name) => {
-        const userData = { email, name, id: Date.now().toString() }
+      login: (userData) => {
         setUser(userData)
         localStorage.setItem('user', JSON.stringify(userData))
       },

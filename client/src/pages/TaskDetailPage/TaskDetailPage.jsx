@@ -35,8 +35,8 @@ function TaskDetailPage() {
   const canMoveRight = columnIndex < COLUMNS.length - 1
   const badgeClass = STATUS_BADGE[task.status] ?? 'todo'
 
-  function handleDelete() {
-    deleteTask(task.id)
+  async function handleDelete() {
+    await deleteTask(task.id)
     navigate('/')
   }
 
