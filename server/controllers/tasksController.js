@@ -1,35 +1,53 @@
-const tasksService = require('../services/tasksService')
+// Handles HTTP requests for task management operations
 
-function getTasks(req, res) {
-  const tasks = tasksService.listTasks()
-  res.status(200).json(tasks)
-}
+const tasksService = require('../services/tasksService');
 
-function createTask(req, res) {
+// Get all tasks
+async function getTasks(req, res) {
   try {
-    const task = tasksService.addTask(req.body)
-    res.status(201).json(task)
+    const tasks = await tasksService.listTasks();
+    res.status(200).json(tasks);
   } catch (error) {
-    res.status(400).json({ message: error.message })
+    res.status(500).json({ message: error.message });
   }
 }
 
-function updateTask(req, res) {
+// Create a new task
+async function createTask(req, res) {
   try {
-    const task = tasksService.modifyTask(req.params.id, req.body)
-    res.status(200).json(task)
+    const task = await tasksService.addTask(req.body);
+    res.status(201).json(task);
   } catch (error) {
-    res.status(404).json({ message: error.message })
+    res.status(400).json({ message: error.message });
   }
 }
 
-function deleteTask(req, res) {
+// Update an existing task
+async function updateTask(req, res) {
   try {
-    tasksService.removeTask(req.params.id)
-    res.status(200).json({ message: 'Task deleted' })
+    const task = await tasksService.modifyTask(req.params.id, req.body);
+
+    res.status(200).json(task);
   } catch (error) {
-    res.status(404).json({ message: error.message })
+    res.status(404).json({ message: error.message });
   }
 }
 
-module.exports = { getTasks, createTask, updateTask, deleteTask }
+// Delete a task
+async function deleteTask(req, res) {
+  try {
+    await tasksService.removeTask(req.params.id);
+
+    res.status(200).json({ message: 'Task deleted' });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
+// Export all controller functions
+module.exports = {
+  getTasks,
+  createTask,
+  updateTask,
+  deleteTask
+};
