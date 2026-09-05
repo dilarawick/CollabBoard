@@ -4,7 +4,8 @@ const { config } = require('./config')
 const { connectDb } = require('./db/connect')
 const tasksRouter = require('./routes/tasks')
 const authRouter = require('./routes/auth')
-const usersRouter = require('./routes/users')     
+const usersRouter = require('./routes/users')
+const activitiesRouter = require('./routes/activities')
 
 const app = express()
 
@@ -13,10 +14,11 @@ app.use(express.json())
 
 app.use('/api/tasks', tasksRouter)
 app.use('/api/auth', authRouter)
-app.use('/api/users', usersRouter)                 
+app.use('/api/users', usersRouter)
+app.use('/api/activities', activitiesRouter)
 
 app.get('/health', (_req, res) => {
-	res.status(200).json({ status: 'ok' })
+    res.status(200).json({ status: 'ok' })
 })
 
 async function startServer() {

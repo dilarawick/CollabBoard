@@ -1,39 +1,57 @@
-import * as activitiesRepository from '../repositories/activitiesRepository.js'
+const activitiesRepository = require('../repositories/activitiesRepository')
 
-export function listActivities() {
+async function listActivities({ boardId, taskId, userId } = {}) {
+  if (boardId) {
+    return activitiesRepository.getActivitiesByBoardId(boardId)
+  }
+
+  if (taskId) {
+    return activitiesRepository.getActivitiesByTaskId(taskId)
+  }
+
+  if (userId) {
+    return activitiesRepository.getActivitiesByUserId(userId)
+  }
+
   return activitiesRepository.getAllActivities()
 }
 
-export function getActivity(id) {
-  return activitiesRepository.getActivityById(id)
+async function getActivity(id) {
+  const activity = await activitiesRepository.getActivityById(id)
+
+  if (!activity) {
+    throw new Error('Activity not found')
+  }
+
+  return activity
 }
 
-export function getActivitiesByBoardId(boardId) {
-  return activitiesRepository.getActivitiesByBoardId(boardId)
-}
-
-export function getActivitiesByTaskId(taskId) {
-  return activitiesRepository.getActivitiesByTaskId(taskId)
-}
-
-export function getActivitiesByUserId(userId) {
-  return activitiesRepository.getActivitiesByUserId(userId)
-}
-
-export function addActivity(activityData) {
-  if (!activityData.boardId || !activityData.taskId || !activityData.userId || !activityData.action) {
+async function addActivity(activityData) {
+  if (
+    !activityData.boardId ||
+    !activityData.taskId ||
+    !activityData.userId ||
+    !activityData.action
+  ) {
     throw new Error('Missing required fields')
   }
 
   return activitiesRepository.createActivity(activityData)
 }
 
-export function removeActivity(id) {
-  const existing = activitiesRepository.getActivityById(id)
+async function removeActivity(id) {
+  const existing = await activitiesRepository.getActivityById(id)
 
   if (!existing) {
     throw new Error('Activity not found')
   }
 
   return activitiesRepository.deleteActivity(id)
+}
+
+module.exports = {
+  listActivities,
+  getActivity,
+  addActivity,
+  removeActivity,
 }
