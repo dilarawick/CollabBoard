@@ -1,51 +1,33 @@
-// Repository layer for managing activity data using mock data
-const { activities } = require('../mockdata')
+const Activity = require('../models/Activity')
 
-let activitiesList = [...activities]
-
-function getAllActivities() {
-  return activitiesList
+async function getAllActivities() {
+  return Activity.find().sort({ at: -1 })
 }
 
-function getActivityById(id) {
-  return activitiesList.find((activity) => activity._id === id)
+async function getActivityById(id) {
+  return Activity.findById(id)
 }
 
-function getActivitiesByBoardId(boardId) {
-  return activitiesList.filter((activity) => activity.boardId === boardId)
+async function getActivitiesByBoardId(boardId) {
+  return Activity.find({ boardId }).sort({ at: -1 })
 }
 
-function getActivitiesByTaskId(taskId) {
-  return activitiesList.filter((activity) => activity.taskId === taskId)
+async function getActivitiesByTaskId(taskId) {
+  return Activity.find({ taskId }).sort({ at: -1 })
 }
 
-function getActivitiesByUserId(userId) {
-  return activitiesList.filter((activity) => activity.userId === userId)
+async function getActivitiesByUserId(userId) {
+  return Activity.find({ userId }).sort({ at: -1 })
 }
 
-function createActivity(activityData) {
-  const newActivity = {
-    _id: Date.now().toString(),
-    boardId: activityData.boardId,
-    taskId: activityData.taskId,
-    userId: activityData.userId,
-    action: activityData.action,
-    at: activityData.at || new Date()
-  }
-
-  activitiesList.push(newActivity)
-
-  return newActivity
+async function createActivity(activityData) {
+  const activity = new Activity(activityData)
+  return activity.save()
 }
 
-function deleteActivity(id) {
-  const index = activitiesList.findIndex((activity) => activity._id === id)
-
-  if (index === -1) return false
-
-  activitiesList.splice(index, 1)
-
-  return true
+async function deleteActivity(id) {
+  const result = await Activity.findByIdAndDelete(id)
+  return result !== null
 }
 
 module.exports = {
@@ -55,5 +37,5 @@ module.exports = {
   getActivitiesByTaskId,
   getActivitiesByUserId,
   createActivity,
-  deleteActivity
+  deleteActivity,
 }
