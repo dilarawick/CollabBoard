@@ -1,3 +1,4 @@
+// Provides user-related operations while keeping password hashes out of responses.
 const { users } = require('../mockdata')
 
 // Creates a working copy of the mock users for repository operations.
