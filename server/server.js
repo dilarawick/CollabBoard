@@ -6,6 +6,7 @@ const tasksRouter = require('./routes/tasks')
 const authRouter = require('./routes/auth')
 const usersRouter = require('./routes/users')
 const activitiesRouter = require('./routes/activities')
+const boardsRouter = require('./routes/boards')
 
 const app = express()
 
@@ -16,6 +17,7 @@ app.use('/api/tasks', tasksRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/activities', activitiesRouter)
+app.use('/api/boards', boardsRouter)
 
 app.get('/health', (_req, res) => {
     res.status(200).json({ status: 'ok' })
