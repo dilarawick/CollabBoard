@@ -1,5 +1,6 @@
 import { tasks, users } from '../mockdata/index.js'
 
+// Normalize mock task records into a lightweight in-memory list that the app can query.
 const tasksList = tasks.map((task) => {
   const user = users.find((u) => u._id === task.assigneeId)
   return {
@@ -11,15 +12,21 @@ const tasksList = tasks.map((task) => {
   }
 })
 
+// Read operations
+
 export function getAllTasks() {
+  // Return the full in-memory task list for the board.
   return tasksList
 }
 
 export function getTaskById(id) {
+  // Fetch a single task by its unique identifier.
   return tasksList.find((task) => task.id === id)
 }
 
+// Write operations
 export function createTask(taskData) {
+  // Add a new task to the list with a generated identifier.
   const newTask = {
     id: Date.now().toString(),
     title: taskData.title,
@@ -32,6 +39,7 @@ export function createTask(taskData) {
 }
 
 export function updateTask(id, updates) {
+  // Merge updates into the matching task and return the updated record.
   const index = tasksList.findIndex((task) => task.id === id)
   if (index === -1) return null
   tasksList[index] = { ...tasksList[index], ...updates }
@@ -39,6 +47,7 @@ export function updateTask(id, updates) {
 }
 
 export function deleteTask(id) {
+  // Remove a task by id and confirm whether anything was deleted.
   const index = tasksList.findIndex((task) => task.id === id)
   if (index === -1) return false
   tasksList.splice(index, 1)
