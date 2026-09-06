@@ -1,5 +1,6 @@
 const activitiesRepository = require('../repositories/activitiesRepository')
 
+// Retrieves activities based on the provided board, task, or user filter.  
 async function listActivities({ boardId, taskId, userId } = {}) {
   if (boardId) {
     return activitiesRepository.getActivitiesByBoardId(boardId)

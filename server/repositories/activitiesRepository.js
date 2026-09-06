@@ -1,13 +1,16 @@
 const Activity = require('../models/Activity')
 
+// Retrieves all activities from MongoDB, sorted by newest first.
 async function getAllActivities() {
   return Activity.find().sort({ at: -1 })
 }
 
+// Retrieves a single activity using its MongoDB document ID.
 async function getActivityById(id) {
   return Activity.findById(id)
 }
 
+// Retrieves all activities associated with a specific board.
 async function getActivitiesByBoardId(boardId) {
   return Activity.find({ boardId }).sort({ at: -1 })
 }
