@@ -2,10 +2,11 @@
 const mongoose = require('mongoose');
 
 const taskSchema = new mongoose.Schema({
-  boardId: { type: mongoose.Schema.Types.ObjectId, ref: 'Board', required: true },
-  columnId: { type: mongoose.Schema.Types.ObjectId, required: true },
+  boardId: { type: mongoose.Schema.Types.ObjectId, ref: 'Board' },
+  columnId: { type: mongoose.Schema.Types.ObjectId },
   title: { type: String, required: true },
   description: { type: String },
+  assignee: { type: String },
   assigneeId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   status: { type: String, required: true },
   priority: { type: String, required: true },
