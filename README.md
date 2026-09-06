@@ -44,7 +44,8 @@ CollabBoard/
 │   ├── controllers/         # Request handlers
 │   ├── routes/              # Route definitions
 │   ├── middleware/          # Express middleware
-│   ├── mockdata/            # Server-side mock data
+│   ├── mockdata/            # Server-side mock data / fallback data
+│   ├── seeds/               # Database seed scripts
 │   └── package.json
 ├── .env                     # Environment variables (git-ignored)
 ├── .env.example             # Environment template
@@ -56,7 +57,7 @@ CollabBoard/
 ### Prerequisites
 
 - Node.js 18+
-- MongoDB (optional — only needed for the backend API)
+- MongoDB (local or MongoDB Atlas)
 
 ### Installation
 
@@ -78,18 +79,16 @@ PORT=5000
 MONGO_URI=your_mongodb_connection_string
 ```
 
-### Development
+### Database Seeding
 
-**Frontend only (with mock data):**
+Seed the database with demo users, boards, and tasks:
 
 ```bash
-cd client
-npm run dev
+node server/seeds/seedUsers.js
+node server/seeds/seedAll.js
 ```
 
-Open http://localhost:5173. The board loads with pre-seeded mock tasks and works without the backend.
-
-**Frontend + Backend:**
+### Development
 
 ```bash
 # Terminal 1 — start backend API server (runs on http://localhost:5000)
@@ -100,11 +99,13 @@ cd client
 npm run dev
 ```
 
+Open http://localhost:5173.
+
 ## Scripts
 
 ### Root (Server)
 
-- `npm run dev` — Start backend API server with nodemon
+- `npm run dev` — Start backend API server with hot reload
 - `npm start` — Start backend API server in production mode
 
 ### Client
@@ -124,7 +125,6 @@ npm run dev
 - Context-based state management
 - Dark/light theme toggle
 - Responsive UI
-- Mock data available for frontend-only development
 
 ## License
 
