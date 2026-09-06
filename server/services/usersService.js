@@ -1,3 +1,4 @@
+// Handles user-related service operations and removes password hashes from responses.
 const usersRepository = require('../repositories/usersRepository');
 
 function sanitizeUser(user) {
