@@ -1,13 +1,17 @@
 const authService = require('../services/authService')
 
-function getUsers(_req, res) {
-  const users = authService.listUsers()
-  res.status(200).json(users)
+async function getUsers(_req, res) {
+  try {
+    const users = await authService.listUsers()
+    res.status(200).json(users)
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch users' })
+  }
 }
 
-function signup(req, res) {
+async function signup(req, res) {
   try {
-    const user = authService.register(req.body)
+    const user = await authService.register(req.body)
     res.status(201).json({
       _id: user._id,
       email: user.email,
@@ -18,10 +22,10 @@ function signup(req, res) {
   }
 }
 
-function login(req, res) {
+async function login(req, res) {
   try {
     const { email, password } = req.body
-    const user = authService.authenticate(email, password)
+    const user = await authService.authenticate(email, password)
     res.status(200).json(user)
   } catch (error) {
     res.status(401).json({ message: error.message })

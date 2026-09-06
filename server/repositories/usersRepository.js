@@ -1,23 +1,47 @@
-// Provides user-related operations while keeping password hashes out of responses.
-const { users } = require('../mockdata')
+const mongoose = require('mongoose')
+const User = require('../models/User')
+const { users: mockUsers } = require('../mockdata')
 
-// Creates a working copy of the mock users for repository operations.
-let usersList = [...users]
+let usersList = [...mockUsers]
 
-// Returns all users currently stored in the repository.
-function getAllUsers() {
-  return usersList
+function isDbConnected() {
+  return mongoose.connection.readyState === 1
 }
-// Finds a user by their email address.
-function getUserByEmail(email) {
+
+function sanitizeUser(user) {
+  if (!user) return null
+  const { passwordHash, ...safeUser } = user
+  return safeUser
+}
+
+async function getAllUsers() {
+  if (isDbConnected()) {
+    const users = await User.find({}).lean()
+    return users.map(sanitizeUser)
+  }
+  return usersList.map(sanitizeUser)
+}
+
+async function getUserByEmail(email) {
+  if (isDbConnected()) {
+    return User.findOne({ email }).lean()
+  }
   return usersList.find((user) => user.email === email)
 }
-// Finds a user by their unique ID.
-function getUserById(id) {
+
+async function getUserById(id) {
+  if (isDbConnected()) {
+    return User.findById(id).lean()
+  }
   return usersList.find((user) => user._id === id)
 }
-// Creates a new user and adds it to the users list.
-function createUser(userData) {
+
+async function createUser(userData) {
+  if (isDbConnected()) {
+    const user = await User.create(userData)
+    return sanitizeUser(user.toObject())
+  }
+
   const newUser = {
     _id: Date.now().toString(),
     email: userData.email,
@@ -26,7 +50,7 @@ function createUser(userData) {
     createdAt: new Date()
   }
   usersList.push(newUser)
-  return newUser
+  return sanitizeUser(newUser)
 }
 
 module.exports = {

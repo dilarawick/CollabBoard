@@ -1,16 +1,16 @@
 const bcrypt = require('bcrypt')
 const usersRepository = require('../repositories/usersRepository')
 
-function listUsers() {
+async function listUsers() {
   return usersRepository.getAllUsers()
 }
 
-function findUserByEmail(email) {
+async function findUserByEmail(email) {
   return usersRepository.getUserByEmail(email)
 }
 
-function register(userData) {
-  const existing = usersRepository.getUserByEmail(userData.email)
+async function register(userData) {
+  const existing = await usersRepository.getUserByEmail(userData.email)
   if (existing) {
     throw new Error('Email already registered')
   }
@@ -23,8 +23,8 @@ function register(userData) {
   })
 }
 
-function authenticate(email, password) {
-  const user = usersRepository.getUserByEmail(email)
+async function authenticate(email, password) {
+  const user = await usersRepository.getUserByEmail(email)
   if (!user) {
     throw new Error('Invalid email or password')
   }
