@@ -5,7 +5,9 @@
   "main": "server/server.js",
   "scripts": {
     "dev": "node --watch server/server.js",
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "test": "jest --runInBand",
+    "test:coverage": "jest --runInBand --coverage"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
@@ -14,5 +16,10 @@
     "express": "^5.1.0",
     "mongodb": "^7.5.0",
     "mongoose": "^9.9.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.1.4",
+    "supertest": "^7.1.1"
   }
 }
