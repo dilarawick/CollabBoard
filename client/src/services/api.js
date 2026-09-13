@@ -93,7 +93,6 @@ export async function deleteTask(id) {
 
   return res.json()
 }
-
 // Login
 export async function login(email, password) {
   const res = await fetch(`${API_BASE}/auth/login`, {
@@ -114,10 +113,12 @@ export async function login(email, password) {
 
   const data = await res.json()
 
-  // Save JWT token
+  console.log('Login response:', data)
+
   localStorage.setItem('token', data.token)
 
-  // Return only the user object
+  console.log('Saved token:', localStorage.getItem('token'))
+
   return data.user
 }
 
