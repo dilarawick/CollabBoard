@@ -33,11 +33,11 @@ async function authenticate(email, password) {
   if (!valid) {
     throw new Error('Invalid email or password')
   }
-
   return {
     _id: user._id,
     email: user.email,
-    name: user.name
+    name: user.name,
+    role: user.role || 'user'
   }
 }
 

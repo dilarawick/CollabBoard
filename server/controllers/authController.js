@@ -1,4 +1,5 @@
 const authService = require('../services/authService')
+const { generateToken } = require('../utils/jwt')
 
 async function getUsers(_req, res) {
   try {
@@ -25,8 +26,21 @@ async function signup(req, res) {
 async function login(req, res) {
   try {
     const { email, password } = req.body
+
     const user = await authService.authenticate(email, password)
-    res.status(200).json(user)
+
+    const token = generateToken(user)
+
+    res.status(200).json({
+      message: 'Login successful',
+      token,
+      user: {
+        _id: user._id,
+        email: user.email,
+        name: user.name,
+        role: user.role
+      }
+    })
   } catch (error) {
     res.status(401).json({ message: error.message })
   }
